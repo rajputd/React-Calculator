@@ -12,15 +12,22 @@ class Calculator extends Component {
     }
 
     this.handleNumberClick = this.handleNumberClick.bind(this);
+    this.handleDecimalClick = this.handleDecimalClick.bind(this);
   }
 
   handleNumberClick(event) {
     const current = this.state.current;
 
-    if(current.length == 0 || /(\d|\d\.\d)/.test(current)) {
+    if(current.length == 0 || /(\d|\d\.\d|\.)/.test(current)) {
       this.setState({current: current + event.target.value});
     }
 
+  }
+
+  handleDecimalClick(event) {
+    if(!/\./.test(this.state.current)) {
+      this.setState({current: this.state.current + event.target.value});
+    }
   }
 
   render() {
@@ -41,6 +48,7 @@ class Calculator extends Component {
             )
           }
         </div>
+        <CalcButton id="decimal" value="." onClick={this.handleDecimalClick} />
       </div>
     )
   }
