@@ -13,6 +13,7 @@ class Calculator extends Component {
 
     this.handleNumberClick = this.handleNumberClick.bind(this);
     this.handleDecimalClick = this.handleDecimalClick.bind(this);
+    this.handleClearClick = this.handleClearClick.bind(this);
   }
 
   handleNumberClick(event) {
@@ -30,10 +31,15 @@ class Calculator extends Component {
     }
   }
 
+  handleClearClick(event) {
+    this.setState({calculation: '', current: ''});
+  }
+
   render() {
     return (
       <div>
         <CalcDisplay calculation={this.state.calculation} current={this.state.current}/>
+        <CalcButton id="clear" value="AC" onClick={this.handleClearClick} />
         <div id="numpad">
           {
             ['nine', 'eight', 'seven', 'six', 'five', 'four', 'three', 'two', 'one', 'zero'].map(
