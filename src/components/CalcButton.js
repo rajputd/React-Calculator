@@ -5,8 +5,9 @@ class CalcButton extends Component {
     return (
       <button
         id={this.props.id}
-        onClick={this.props.onClick}>
-                {this.props.value}
+        onClick={this.props.onClick}
+        value={this.props.value}>
+          {this.props.value}
       </button>
     )
   }

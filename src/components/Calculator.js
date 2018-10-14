@@ -1,14 +1,46 @@
 import React, { Component } from 'react';
 import CalcDisplay from './CalcDisplay.js';
+import CalcButton from './CalcButton.js';
+
 
 class Calculator extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      current: '',
+      calculation: ''
+    }
+
+    this.handleNumberClick = this.handleNumberClick.bind(this);
+  }
+
+  handleNumberClick(event) {
+    const current = this.state.current;
+
+    if(current.length == 0 || /(\d|\d\.\d)/.test(current)) {
+      this.setState({current: current + event.target.value});
+    }
+
+  }
 
   render() {
-    let calculation = "";
-
     return (
       <div>
-        <CalcDisplay calculation={calculation}/>
+        <CalcDisplay calculation={this.state.calculation} current={this.state.current}/>
+        <div id="numpad">
+          {
+            ['nine', 'eight', 'seven', 'six', 'five', 'four', 'three', 'two', 'one', 'zero'].map(
+              (id, value) => {
+                return <CalcButton
+                          key={id}
+                          id={id}
+                          value={value}
+                          onClick={this.handleNumberClick}
+                        />;
+              }
+            )
+          }
+        </div>
       </div>
     )
   }
