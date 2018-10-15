@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 class CalcDisplay extends Component {
   render() {
     return (
-      <div id="display">
-        <div id="sub-display">
+      <div>
+        <div id="calculation">
           {this.props.calculation}
         </div>
-        <div id="main-display">
+        <div id="display">
           {this.props.current}
         </div>
       </div>
