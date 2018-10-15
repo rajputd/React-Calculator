@@ -79,6 +79,12 @@ class Calculator extends Component {
   handleOperatorClick(event) {
     const current = this.state.current;
 
+    if(this.isOperator(current)) {
+      this.setState({
+        current: event.target.value
+      });
+    }
+
     if (this.isNum(current)) {
       this.setState({
         calculation: [...this.state.calculation, current],
