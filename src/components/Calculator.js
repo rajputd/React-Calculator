@@ -47,13 +47,19 @@ class Calculator extends Component {
 
   handleNumberClick(event) {
     const current = this.state.current;
-    let calculation = this.state.calculation;
+    const calculation = this.state.calculation;
 
     if(calculation[calculation.length - 1] === '=') {
       this.setState({
         calculation: [],
         current: event.target.value
       });
+      return;
+    }
+
+    //don't allow users to pad left side of value with zeros
+    if(current === '0') {
+      this.setState({current: event.target.value});
       return;
     }
 
