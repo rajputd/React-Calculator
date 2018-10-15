@@ -47,10 +47,20 @@ class Calculator extends Component {
 
   handleNumberClick(event) {
     const current = this.state.current;
+    let calculation = this.state.calculation;
+
+    if(calculation[calculation.length - 1] === '=') {
+      this.setState({
+        calculation: [],
+        current: event.target.value
+      });
+      return;
+    }
 
     if(this.isOperator(current)) {
+      console.log(calculation);
       this.setState({
-        calculation: [...this.state.calculation, current],
+        calculation: [...calculation, current],
         current: event.target.value
       });
       return;
@@ -66,6 +76,15 @@ class Calculator extends Component {
   handleDecimalClick(event) {
 
     const current = this.state.current;
+    const calculation = this.state.calculation;
+
+    if (calculation[calculation.length - 1] === '=') {
+      this.setState({
+        calculation: [],
+        current: '0.'
+      });
+      return;
+    }
 
     //if nothing is there append 0.
     if (current.length == 0) {
@@ -82,7 +101,7 @@ class Calculator extends Component {
     //if an operator is there, push the operator and add 0.
     if(this.isOperator(current)) {
       this.setState({
-        calculation: [...this.state.calculation, current],
+        calculation: [...calculation, current],
         current: '0.'
       });
       return;
@@ -97,6 +116,15 @@ class Calculator extends Component {
 
   handleOperatorClick(event) {
     const current = this.state.current;
+    const calculation = this.state.calculation;
+
+    if (calculation[calculation.length - 1] === '=') {
+      this.setState({
+        calculation: [current],
+        current: event.target.value
+      });
+      return;
+    }
 
     if(this.isOperator(current)) {
       this.setState({
@@ -106,7 +134,7 @@ class Calculator extends Component {
 
     if (this.isNum(current)) {
       this.setState({
-        calculation: [...this.state.calculation, current],
+        calculation: [...calculation, current],
         current: event.target.value
       });
       return;
