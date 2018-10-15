@@ -64,7 +64,6 @@ class Calculator extends Component {
     }
 
     if(this.isOperator(current)) {
-      console.log(calculation);
       this.setState({
         calculation: [...calculation, current],
         current: event.target.value
