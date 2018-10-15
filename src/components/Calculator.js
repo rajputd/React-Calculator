@@ -47,7 +47,6 @@ class Calculator extends Component {
   handleDecimalClick(event) {
 
     const current = this.state.current;
-    let append = '';
 
     //if nothing is there append 0.
     if (current.length == 0) {
