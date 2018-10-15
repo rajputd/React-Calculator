@@ -136,6 +136,16 @@ class Calculator extends Component {
       this.setState({
         current: event.target.value
       });
+      return;
+    }
+
+    //remove trailing point from zero if '0.' is an operand
+    if (current === '0.') {
+      this.setState({
+        calculation: [...calculation, '0'],
+        current: event.target.value
+      });
+      return;
     }
 
     if (this.isNum(current)) {
