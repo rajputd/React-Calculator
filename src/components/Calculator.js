@@ -26,6 +26,25 @@ class Calculator extends Component {
     return /(\d+|\d+\.\d+|0\.)/.test(token);
   }
 
+  compute(calculation) {
+    let result = Number(calculation[0]);
+
+    for(let i = 1; i < calculation.length; i += 2) {
+      let operator = calculation[i];
+      let secondOperand = Number(calculation[i+1]);
+      switch (operator) {
+        case '+': result += secondOperand; break;
+        case '-': result -= secondOperand; break;
+        case '/': result /= secondOperand; break;
+        case '*': result *= secondOperand; break;
+        default: alert("could not process calculation"); return;
+      }
+    }
+
+    return result;
+
+  }
+
   handleNumberClick(event) {
     const current = this.state.current;
 
@@ -107,12 +126,12 @@ class Calculator extends Component {
 
     //if current value is a number, add it and perform calculation
     if (this.isNum(current)) {
-      this.setState({calculation: [...calculation, current, '='], current: ''});
+      this.setState({calculation: [...calculation, current, '='], current: this.compute([...calculation, current])});
     }
 
     //if current value is an op, toss it and perform calculation
     if (this.isOperator(current)) {
-      this.setState({calculation: [...calculation, '='], current: ''});
+      this.setState({calculation: [...calculation, '='], current: this.compute([...calculation])});
     }
 
   }
