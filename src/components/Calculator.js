@@ -15,6 +15,7 @@ class Calculator extends Component {
     this.handleDecimalClick = this.handleDecimalClick.bind(this);
     this.handleClearClick = this.handleClearClick.bind(this);
     this.handleOperatorClick = this.handleOperatorClick.bind(this);
+    this.handleEqualsClick = this.handleEqualsClick.bind(this);
   }
 
   handleNumberClick(event) {
@@ -58,6 +59,28 @@ class Calculator extends Component {
 
   }
 
+  handleEqualsClick(event) {
+    const calculation = this.state.calculation;
+
+    //If there is no calculation to perform, do nothing
+    if (calculation.length == 0) {
+      return;
+    }
+
+    const current = this.state.current;
+
+    //if current value is a number, add it and perform calculation
+    if (/(\d|\d\.\d)/.test(current)) {
+      this.setState({calculation: calculation + current + '=', current: ''});
+    }
+
+    //if current value is an op, toss it and perform calculation
+    if (/(\+|-|\/|\*)/.test(current)) {
+      this.setState({calculation: calculation + '=', current: ''});
+    }
+
+  }
+
   render() {
     return (
       <div>
@@ -72,10 +95,10 @@ class Calculator extends Component {
           ].map(
             (operator) => {
               return <CalcButton
-                      key={operator.id}
-                      id={operator.id}
-                      value={operator.value}
-                      onClick={this.handleOperatorClick}
+                        key={operator.id}
+                        id={operator.id}
+                        value={operator.value}
+                        onClick={this.handleOperatorClick}
                      />;
             }
           )
@@ -95,6 +118,7 @@ class Calculator extends Component {
           }
         </div>
         <CalcButton id="decimal" value="." onClick={this.handleDecimalClick} />
+        <CalcButton id="equals" value="=" onClick={this.handleEqualsClick} />
       </div>
     )
   }
