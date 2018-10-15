@@ -8,7 +8,7 @@ class Calculator extends Component {
     super(props);
     this.state = {
       current: '',
-      calculation: ''
+      calculation: []
     }
 
     this.handleNumberClick = this.handleNumberClick.bind(this);
@@ -31,7 +31,7 @@ class Calculator extends Component {
 
     if(this.isOperator(current)) {
       this.setState({
-        calculation: this.state.calculation + current,
+        calculation: [...this.state.calculation, current],
         current: event.target.value
       });
       return;
@@ -63,7 +63,7 @@ class Calculator extends Component {
     //if an operator is there, push the operator and add 0.
     if(this.isOperator(current)) {
       this.setState({
-        calculation: this.state.calculation + current,
+        calculation: [...this.state.calculation, current],
         current: '0.'
       });
       return;
@@ -73,7 +73,7 @@ class Calculator extends Component {
   }
 
   handleClearClick(event) {
-    this.setState({calculation: '', current: ''});
+    this.setState({calculation: [], current: ''});
   }
 
   handleOperatorClick(event) {
@@ -81,7 +81,7 @@ class Calculator extends Component {
 
     if (this.isNum(current)) {
       this.setState({
-        calculation: this.state.calculation + current,
+        calculation: [...this.state.calculation, current],
         current: event.target.value
       });
       return;
@@ -101,12 +101,12 @@ class Calculator extends Component {
 
     //if current value is a number, add it and perform calculation
     if (this.isNum(current)) {
-      this.setState({calculation: calculation + current + '=', current: ''});
+      this.setState({calculation: [...calculation, current, '='], current: ''});
     }
 
     //if current value is an op, toss it and perform calculation
     if (this.isOperator(current)) {
-      this.setState({calculation: calculation + '=', current: ''});
+      this.setState({calculation: [...calculation, '='], current: ''});
     }
 
   }
