@@ -146,7 +146,7 @@ class Calculator extends Component {
     const calculation = this.state.calculation;
 
     //If there is no calculation to perform, do nothing
-    if (calculation.length == 0) {
+    if (calculation.length == 0 || calculation[calculation.length - 1] === '=') {
       return;
     }
 
