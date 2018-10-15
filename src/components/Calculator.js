@@ -18,10 +18,18 @@ class Calculator extends Component {
     this.handleEqualsClick = this.handleEqualsClick.bind(this);
   }
 
+  isOperator(token) {
+    return /(\+|-|\/|\*)/.test(token);
+  }
+
+  isNum(token) {
+    return /(\d+|\d+\.\d+|0\.)/.test(token);
+  }
+
   handleNumberClick(event) {
     const current = this.state.current;
 
-    if(/(\+|-|\/|\*)/.test(current)) {
+    if(this.isOperator(current)) {
       this.setState({
         calculation: this.state.calculation + current,
         current: event.target.value
@@ -29,7 +37,7 @@ class Calculator extends Component {
       return;
     }
 
-    if(current.length == 0 || /(\d|\d\.\d|\.)/.test(current)) {
+    if(current.length == 0 || this.isNum(current)) {
       this.setState({current: current + event.target.value});
       return;
     }
@@ -48,13 +56,13 @@ class Calculator extends Component {
     }
 
     //if a number is there, check if it has a decimal, if not add decimal
-    if(/(\d|\d\.\d)/.test(current) && !/\./.test(current)) {
+    if(this.isNum(current) && !/\./.test(current)) {
       this.setState({current: current + '.'});
       return;
     }
 
     //if an operator is there, push the operator and add 0.
-    if(/(\+|-|\/|\*)/.test(current)) {
+    if(this.isOperator(current)) {
       this.setState({
         calculation: this.state.calculation + current,
         current: '0.'
@@ -72,7 +80,7 @@ class Calculator extends Component {
   handleOperatorClick(event) {
     const current = this.state.current;
 
-    if (/(\d|\d\.\d)/.test(current)) {
+    if (this.isNum(current)) {
       this.setState({
         calculation: this.state.calculation + current,
         current: event.target.value
@@ -93,12 +101,12 @@ class Calculator extends Component {
     const current = this.state.current;
 
     //if current value is a number, add it and perform calculation
-    if (/(\d|\d\.\d)/.test(current)) {
+    if (this.isNum(current)) {
       this.setState({calculation: calculation + current + '=', current: ''});
     }
 
     //if current value is an op, toss it and perform calculation
-    if (/(\+|-|\/|\*)/.test(current)) {
+    if (this.isOperator(current)) {
       this.setState({calculation: calculation + '=', current: ''});
     }
 
