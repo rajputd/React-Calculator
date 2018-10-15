@@ -37,9 +37,32 @@ class Calculator extends Component {
   }
 
   handleDecimalClick(event) {
-    if(!/\./.test(this.state.current)) {
-      this.setState({current: this.state.current + event.target.value});
+
+    const current = this.state.current;
+    let append = '';
+
+    //if nothing is there append 0.
+    if (current.length == 0) {
+      this.setState({current: '0.'});
+      return;
     }
+
+    //if a number is there, check if it has a decimal, if not add decimal
+    if(/(\d|\d\.\d)/.test(current) && !/\./.test(current)) {
+      this.setState({current: current + '.'});
+      return;
+    }
+
+    //if an operator is there, push the operator and add 0.
+    if(/(\+|-|\/|\*)/.test(current)) {
+      this.setState({
+        calculation: this.state.calculation + current,
+        current: '0.'
+      });
+      return;
+    }
+
+
   }
 
   handleClearClick(event) {
