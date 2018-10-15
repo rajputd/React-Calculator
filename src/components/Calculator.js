@@ -49,6 +49,7 @@ class Calculator extends Component {
     const current = this.state.current;
     const calculation = this.state.calculation;
 
+    //if we have just performed a calculation, clear the old inputs
     if(calculation[calculation.length - 1] === '=') {
       this.setState({
         calculation: [],
@@ -63,6 +64,8 @@ class Calculator extends Component {
       return;
     }
 
+    //if an operator was previously entered, then push that operator to the
+    //pending calculation
     if(this.isOperator(current)) {
       this.setState({
         calculation: [...calculation, current],
@@ -71,6 +74,8 @@ class Calculator extends Component {
       return;
     }
 
+    //if there is nothing or an number inside current then append the new value
+    //that was just pressed
     if(current.length == 0 || this.isNum(current)) {
       this.setState({current: current + event.target.value});
       return;
@@ -83,6 +88,7 @@ class Calculator extends Component {
     const current = this.state.current;
     const calculation = this.state.calculation;
 
+    //if we have just performed a calculation, clear the old inputs and append 0.
     if (calculation[calculation.length - 1] === '=') {
       this.setState({
         calculation: [],
@@ -123,6 +129,8 @@ class Calculator extends Component {
     const current = this.state.current;
     const calculation = this.state.calculation;
 
+    //if a calculation was just performed, use the result as an operand for
+    //the new one being entered
     if (calculation[calculation.length - 1] === '=') {
       this.setState({
         calculation: [current],
@@ -131,6 +139,8 @@ class Calculator extends Component {
       return;
     }
 
+    //if an operator has already been entered, change it to the new one that
+    //has just been pressed
     if(this.isOperator(current)) {
       this.setState({
         current: event.target.value
@@ -147,6 +157,7 @@ class Calculator extends Component {
       return;
     }
 
+    //if a number has been entered, add it as an operand to the pending calculation
     if (this.isNum(current)) {
       this.setState({
         calculation: [...calculation, current],
@@ -159,13 +170,12 @@ class Calculator extends Component {
 
   handleEqualsClick(event) {
     const calculation = this.state.calculation;
+    const current = this.state.current;
 
     //If there is no calculation to perform, do nothing
     if (calculation.length == 0 || calculation[calculation.length - 1] === '=') {
       return;
     }
-
-    const current = this.state.current;
 
     //if current value is a number, add it and perform calculation
     if (this.isNum(current)) {
