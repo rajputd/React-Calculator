@@ -1,16 +1,14 @@
 #calculator {
   display: grid;
   grid-template-columns: repeat(4, 25px);
-  grid-template-rows: repeat(6, 25px);
+  grid-template-rows: 3em repeat(5, 25px);
   font-family: 'Roboto Mono';
 }
 
-#display {
-  height: 100%;
-  width: 100%;
-  grid-column: 0 / 4;
-  grid-row: 0 / 1;
-
+#display-holder {
+  grid-column: 1 / 5;
+  grid-row: 1 / 2;
+  text-align: right;
   font-family: Quantico;
 }
 
