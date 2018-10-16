@@ -5,15 +5,32 @@
   font-family: 'Roboto Mono';
 }
 
+#calculator * {
+  background-color: #8191a8;
+  border-color: black;
+}
+
+#calculator button:hover {
+  border-color: #8191c0;
+}
+
 #display-holder {
   grid-column: 1 / 5;
   grid-row: 1 / 2;
   text-align: right;
+  background-color: black;
   font-family: Quantico;
+  color: white;
+}
+
+#display-holder * {
+  background-color: black;
 }
 
 #clear {
   grid-column: 1 / 3;
+  background-color: red;
+  border-color: black;
 }
 
 #equals {
@@ -31,4 +48,8 @@
   display: grid;
   grid-template-columns: repeat(3, 25px);
   grid-template-rows: repeat(4, 25px);
+}
+
+#numpad * {
+  background-color: #474f5b;
 }
