@@ -180,12 +180,12 @@ class Calculator extends Component {
 
     //if current value is a number, add it and perform calculation
     if (this.isNum(current)) {
-      this.setState({calculation: [...calculation, current, '='], current: this.compute([...calculation, current])});
+      this.setState({calculation: [...calculation, current, '='], current: this.compute([...calculation, current]).toString()});
     }
 
     //if current value is an op, toss it and perform calculation
     if (this.isOperator(current)) {
-      this.setState({calculation: [...calculation, '='], current: this.compute([...calculation])});
+      this.setState({calculation: [...calculation, '='], current: this.compute([...calculation]).toString()});
     }
 
   }
