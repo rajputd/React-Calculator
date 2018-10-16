@@ -3,6 +3,8 @@
   grid-template-columns: repeat(4, 40px);
   grid-template-rows: 3em repeat(5, 40px);
   font-family: 'Roboto Mono';
+
+  justify-content: center;
 }
 
 #calculator * {
