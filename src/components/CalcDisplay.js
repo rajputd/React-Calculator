@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class CalcDisplay extends Component {
   render() {
     return (
-      <div>
+      <div id="display-holder">
         <div id="calculation">
           {this.props.calculation}
         </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CalcDisplay from './CalcDisplay.js';
 import CalcButton from './CalcButton.js';
+import '../css/Calculator.css';
 
 
 class Calculator extends Component {
@@ -191,7 +192,7 @@ class Calculator extends Component {
 
   render() {
     return (
-      <div>
+      <div id="calculator">
         <CalcDisplay calculation={this.state.calculation} current={this.state.current}/>
         <CalcButton id="clear" value="AC" onClick={this.handleClearClick} />
         {
@@ -214,18 +215,19 @@ class Calculator extends Component {
         <div id="numpad">
           {
             ['nine', 'eight', 'seven', 'six', 'five', 'four', 'three', 'two', 'one', 'zero'].map(
-              (id, value) => {
+              (id, value, arr) => {
                 return <CalcButton
                           key={id}
                           id={id}
-                          value={value}
+                          value={arr.length - 1 - value}
                           onClick={this.handleNumberClick}
+                          className="num"
                         />;
               }
             )
           }
+          <CalcButton id="decimal" value="." onClick={this.handleDecimalClick} />
         </div>
-        <CalcButton id="decimal" value="." onClick={this.handleDecimalClick} />
         <CalcButton id="equals" value="=" onClick={this.handleEqualsClick} />
       </div>
     )
