@@ -1,7 +1,7 @@
 #calculator {
   display: grid;
-  grid-template-columns: repeat(4, 25px);
-  grid-template-rows: 3em repeat(5, 25px);
+  grid-template-columns: repeat(4, 40px);
+  grid-template-rows: 3em repeat(5, 40px);
   font-family: 'Roboto Mono';
 }
 
@@ -46,8 +46,8 @@
   grid-row: 3 / 7;
 
   display: grid;
-  grid-template-columns: repeat(3, 25px);
-  grid-template-rows: repeat(4, 25px);
+  grid-template-columns: repeat(3, 40px);
+  grid-template-rows: repeat(4, 40px);
 }
 
 #numpad * {
